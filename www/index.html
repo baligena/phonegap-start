@@ -33,12 +33,21 @@
     </head>
     <body>
         <div>   a        </div>
+        <p>p</p>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+
         <script type="text/javascript">
             $('div').click(function(){
                 alert(navigator.network.connection.type);
+                $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
+                  // $( ".result" ).html( data );
+                  console.log(JSON.parse(data) );
+                  $('p').html(JSON.parse(data)[0]['html']);
+                });
             })
+        
+
             app.initialize();
         </script>
     </body>
