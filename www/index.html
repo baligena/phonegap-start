@@ -23,7 +23,73 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>Hello World</title>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+<style>
+.cifra-mono{
+  display: none;
+}
+li.first_line, .controls {
+  padding: 20px;
+  background: lightblue;
+  display: block;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+li.first_line{
+  border: 1px solid #93B9C5;
+  margin-bottom: 20px;
+}
+.null{
+  height: 50px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.controls {
+  background: rgb(0, 26, 3);
+  color: white;
+  position: fixed;
+  left:0;
+  width: 100%;
+  bottom: 0;
+}
+
+b[class*='_i'], .chords {
+  color:red 
+}
+
+ul.controls{
+   overflow:hidden;
+   background: rgb(0, 26, 3);
+   color: white;
+   position: fixed;
+   left: 0;
+   width: 100%;
+   bottom: 0;
+   margin: 0px;
+   padding: 0px;
+}
+.controls li {
+   float: left;
+   padding:15px;
+   margin-right: 10px;
+   display: block;
+}
+
+
+</style>
+
+
+
+        
+        <script src="js/jquery-2.0.2.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/backbone-min.js"></script>
+
+
+
         <script>
         window.onerror = function(a,b,c){
           alert(a+'\n'+b+'\n'+c);
@@ -32,14 +98,16 @@
         </script>
     </head>
     <body>
+        <main></main>
         <div>   a        </div>
         <p>p</p>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="app.js"></script>
 
         <script type="text/javascript">
             $('div').click(function(){
-                alert(navigator.network.connection.type);
+                // alert(navigator.network.connection.type);
                 $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
                   // $( ".result" ).html( data );
                   console.log(JSON.parse(data) );
@@ -48,7 +116,7 @@
             })
         
 
-            app.initialize();
+            // app2.initialize();
         </script>
     </body>
 </html>
