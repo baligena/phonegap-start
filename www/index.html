@@ -36,11 +36,20 @@
   </head>
   <body>
     <p>A dialog box will report the network state.</p>
+    <div>a</div>
   </body>
 
   <script>
     $('p').click(function(){
         checkConnection();
+
+        $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
+          // $( ".result" ).html( data );
+          console.log(JSON.parse(data) );
+          $('div').html(JSON.parse(data)[0]['html']);
+        });
     })
+
+    
   </script>
 </html>
