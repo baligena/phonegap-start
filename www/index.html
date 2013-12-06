@@ -35,8 +35,6 @@
     </head>
     <body>
         <main></main>
-        <div>   a        </div>
-        <p>p</p>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
@@ -50,17 +48,6 @@
             function onDeviceReady() {
                 $.getScript('app.js'); //HACK: needs duplicate import because when app is closed it doesnt come back up
             }
-
-            $('div').click(function(){
-                alert(window.status);
-                alert(navigator.network.connection.type);
-                $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
-                  // $( ".result" ).html( data );
-                  console.log(JSON.parse(data) );
-                  $('p').html(JSON.parse(data)[0]['html']);
-                });
-            })
-        
 
             // app2.initialize();
         </script>

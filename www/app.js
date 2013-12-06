@@ -7,31 +7,6 @@ window.onerror = function(a,b,c){
 }
 
 
-///////////////////////////
-var get_data = function(){
-    var deferred = new $.Deferred();
-    try{
-        if(navigator.network.connection.type == 'none'){
-            alert('get from localstorage');
-        }
-        else{
-            return $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
-                app.data.JSON = JSON.parse(data);
-                //save to localstorage
-            });
-        }
-    }
-    catch(e){
-        deferred.reject();
-        return deferred;
-        alert('Device not ready, should try again');
-    }
-}
-
-
-var load_cifras = get_data();
-
-
 //DEFAULTS
 window.app = {
   url:''
@@ -50,6 +25,60 @@ window.app = {
       previous:'',
   }
 }
+
+
+///////////////////////////
+var get_data = function(){
+    var deferred = new $.Deferred();
+    try{
+        if(navigator.network.connection.type == 'none'){
+            alert('get from localstorage');
+            var retrievedObject = localStorage.getItem('cifras');
+            console.log('localstorage');
+            window.app.data.JSON = JSON.parse(retrievedObject);
+            deferred.resolve();
+        }
+        else{
+            return $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
+                window.app.data.JSON = JSON.parse(data);
+                localStorage.setItem('cifras', JSON.stringify(app.data.JSON));
+            });
+        }
+    }
+    catch(e){
+        alert('Device not ready, should try again');
+        deferred.reject();
+    }
+    return deferred;
+
+}
+
+
+var get_data2 = function(){
+    var deferred = new $.Deferred();
+    console.log('internte');
+    return $.get( "http://mail.baligena.com/convert_music_stand?download", function( data ) {
+                window.app.data.JSON = JSON.parse(data);
+                localStorage.setItem('cifras', JSON.stringify(app.data.JSON));
+            });
+    var retrievedObject = localStorage.getItem('cifras');
+    console.log('localstorage');
+    window.app.data.JSON = JSON.parse(retrievedObject);
+    deferred.resolve();
+    return deferred
+    // // Retrieve the object from storage
+    // var retrievedObject = localStorage.getItem('testObject');
+
+    // console.log('retrievedObject: ', JSON.parse(retrievedObject));
+
+    // alert(JSON.parse(retrievedObject)[0]['date'] );
+}
+
+
+var load_cifras = (/Chrome/i.test(navigator.userAgent) ? get_data2() : get_data());
+
+
+
 
 
 
